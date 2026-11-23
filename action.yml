@@ -1,0 +1,35 @@
+name: 'Download from Lingohub'
+description: 'Download the translated files of your Lingohub project into your repository, at the paths they have in Lingohub.'
+author: 'lingohub GmbH'
+branding:
+  icon: 'download-cloud'
+  color: 'blue'
+inputs:
+  api_key:
+    description: 'Lingohub API key'
+    required: true
+  project_id:
+    description: 'Lingohub project ID from the project menu''s Copy ID (e.g. pr_0197c8f2-5a6b-7cde-8f12-3456789abcde)'
+    required: true
+  branch:
+    description: 'Name of the Lingohub project branch to download. Defaults to the project''s default branch.'
+    required: false
+  language_codes:
+    description: 'Comma-separated language codes to download (e.g. de,fr). Defaults to every language of the branch.'
+    required: false
+  destination:
+    description: 'Folder the files are written to, at their Lingohub paths. Existing files are overwritten.'
+    required: false
+    default: '.'
+  timeout:
+    description: 'Seconds to wait for the export to finish'
+    required: false
+    default: '300'
+outputs:
+  export_id:
+    description: 'ID of the Lingohub export'
+  file_count:
+    description: 'Number of files written'
+runs:
+  using: 'node24'
+  main: 'dist/index.js'
